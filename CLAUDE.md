@@ -65,6 +65,13 @@ npm run lint    # Run ESLint
 - Focus on one feature at a time with explanations
 - Use concise commit messages without Claude co-author attribution
 
+## Future Technology Plans
+
+- **Azure** - User management and authentication
+- **Terraform** - Infrastructure as code management
+- **SQLite** - Local database storage
+- **C# and .NET** - Backend API development
+
 ## Future Extensions
 
 This scaffold provides a solid foundation for:
