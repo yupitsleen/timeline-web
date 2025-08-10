@@ -1,7 +1,7 @@
 import { useState } from 'react'
+import { Box, TextField, Button, Typography, Container, Paper, Alert } from '@mui/material'
 import { useAppContext } from '../context/AppContext'
 import Loading from '../components/Loading'
-import styles from './Register.module.css'
 
 function Register() {
   const { setUser, setLoading, state } = useAppContext()
@@ -71,54 +71,64 @@ function Register() {
   }
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <h1>Create Account</h1>
+    <Container maxWidth="sm" sx={{ mt: 4 }}>
+      <Paper elevation={3} sx={{ p: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom align="center">
+          Create Account
+        </Typography>
         
-        <div className={styles.field}>
-          <label htmlFor="email">Email</label>
-          <input
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+          <TextField
+            fullWidth
             type="email"
-            id="email"
             name="email"
+            label="Email"
             value={formData.email}
             onChange={handleChange}
-            className={errors.email ? styles.error : ''}
+            error={!!errors.email}
+            helperText={errors.email}
+            margin="normal"
+            required
           />
-          {errors.email && <span className={styles.errorText}>{errors.email}</span>}
-        </div>
 
-        <div className={styles.field}>
-          <label htmlFor="password">Password</label>
-          <input
+          <TextField
+            fullWidth
             type="password"
-            id="password"
             name="password"
+            label="Password"
             value={formData.password}
             onChange={handleChange}
-            className={errors.password ? styles.error : ''}
+            error={!!errors.password}
+            helperText={errors.password}
+            margin="normal"
+            required
           />
-          {errors.password && <span className={styles.errorText}>{errors.password}</span>}
-        </div>
 
-        <div className={styles.field}>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
+          <TextField
+            fullWidth
             type="password"
-            id="confirmPassword"
             name="confirmPassword"
+            label="Confirm Password"
             value={formData.confirmPassword}
             onChange={handleChange}
-            className={errors.confirmPassword ? styles.error : ''}
+            error={!!errors.confirmPassword}
+            helperText={errors.confirmPassword}
+            margin="normal"
+            required
           />
-          {errors.confirmPassword && <span className={styles.errorText}>{errors.confirmPassword}</span>}
-        </div>
 
-        <button type="submit" className={styles.button}>
-          Create Account
-        </button>
-      </form>
-    </div>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            size="large"
+          >
+            Create Account
+          </Button>
+        </Box>
+      </Paper>
+    </Container>
   )
 }
 
