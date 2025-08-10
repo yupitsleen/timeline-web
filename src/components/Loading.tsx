@@ -15,7 +15,7 @@ export default function Loading({
   className = '' 
 }: LoadingProps) {
   const content = (
-    <div className={`${styles.loading} ${styles[size]} ${className}`}>
+    <div className={`${styles.loading} ${styles[size]} ${className}`} role="status" aria-label={text || 'Loading'}>
       <div className={styles.spinner} />
       {text && <p className={styles.text}>{text}</p>}
     </div>
