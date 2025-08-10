@@ -57,6 +57,14 @@ npm run lint    # Run ESLint
 - The app is fully responsive and supports light/dark theming via Context
 - Code is structured to be easily forkable for new projects
 
+## Development Preferences
+
+- Take development slowly, explaining each step for learning
+- Keep the development server running to see changes in real-time
+- Commit all significant code additions when the app is running properly
+- Focus on one feature at a time with explanations
+- Use concise commit messages without Claude co-author attribution
+
 ## Future Extensions
 
 This scaffold provides a solid foundation for:
