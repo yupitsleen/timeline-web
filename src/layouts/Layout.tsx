@@ -34,6 +34,12 @@ function Layout({ children }: LayoutProps) {
           >
             Register
           </Link>
+          <Link 
+            to="/login" 
+            className={`${styles.navLink} ${isActive('/login') ? styles.active : ''}`}
+          >
+            Login
+          </Link>
         </nav>
       </header>
       <main className={styles.main}>
