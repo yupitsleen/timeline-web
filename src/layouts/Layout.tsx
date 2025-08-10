@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useAppContext } from '../context/AppContext'
 import styles from './Layout.module.css'
 
 interface LayoutProps {
@@ -8,8 +9,14 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   const location = useLocation()
+  const { state, setUser } = useAppContext()
   
   const isActive = (path: string) => location.pathname === path
+
+  const handleLogout = () => {
+    setUser(null)
+    alert('You have been logged out')
+  }
 
   return (
     <div className={styles.layout}>
@@ -28,18 +35,35 @@ function Layout({ children }: LayoutProps) {
           >
             About
           </Link>
-          <Link 
-            to="/register" 
-            className={`${styles.navLink} ${isActive('/register') ? styles.active : ''}`}
-          >
-            Register
-          </Link>
-          <Link 
-            to="/login" 
-            className={`${styles.navLink} ${isActive('/login') ? styles.active : ''}`}
-          >
-            Login
-          </Link>
+          
+          {state.user ? (
+            <>
+              <Link 
+                to="/profile" 
+                className={`${styles.navLink} ${isActive('/profile') ? styles.active : ''}`}
+              >
+                Profile
+              </Link>
+              <button onClick={handleLogout} className={styles.logoutButton}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link 
+                to="/register" 
+                className={`${styles.navLink} ${isActive('/register') ? styles.active : ''}`}
+              >
+                Register
+              </Link>
+              <Link 
+                to="/login" 
+                className={`${styles.navLink} ${isActive('/login') ? styles.active : ''}`}
+              >
+                Login
+              </Link>
+            </>
+          )}
         </nav>
       </header>
       <main className={styles.main}>
