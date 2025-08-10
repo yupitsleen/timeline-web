@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 import Footer from '../components/Footer'
+import { env } from '../utils/env'
 import styles from './Layout.module.css'
 
 interface LayoutProps {
@@ -23,7 +24,7 @@ function Layout({ children }: LayoutProps) {
     <div className={styles.layout}>
       <header className={styles.header}>
         <nav className={styles.nav}>
-          <div className={styles.logo}>My App</div>
+          <div className={styles.logo}>{env.APP_NAME}</div>
           <Link 
             to="/" 
             className={`${styles.navLink} ${isActive('/') ? styles.active : ''}`}

@@ -1,4 +1,5 @@
 import { Box, Typography, Container } from '@mui/material'
+import { env } from '../utils/env'
 
 function Footer() {
   const currentYear = new Date().getFullYear()
@@ -15,7 +16,7 @@ function Footer() {
     >
       <Container maxWidth="lg">
         <Typography variant="body2" align="center">
-          © {currentYear} My App. Built with React, TypeScript, and Material-UI.
+          © {currentYear} {env.APP_NAME}. Built with React, TypeScript, and Material-UI.
         </Typography>
       </Container>
     </Box>
