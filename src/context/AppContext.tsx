@@ -1,11 +1,14 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import type { AppState, AppContextValue, User } from '../types/app'
+import { getFromStorage, setToStorage, removeFromStorage } from '../utils/helpers'
 
-const initialState: AppState = {
-  user: null,
-  theme: 'light',
-  loading: false,
+const getInitialState = (): AppState => {
+  return {
+    user: getFromStorage<User | null>('user', null),
+    theme: getFromStorage<'light' | 'dark'>('theme', 'light'),
+    loading: false,
+  }
 }
 
 const AppContext = createContext<AppContextValue | undefined>(undefined)
@@ -15,14 +18,20 @@ interface AppProviderProps {
 }
 
 export function AppProvider({ children }: AppProviderProps) {
-  const [state, setState] = useState<AppState>(initialState)
+  const [state, setState] = useState<AppState>(getInitialState)
 
   const setUser = (user: User | null) => {
     setState(prev => ({ ...prev, user }))
+    if (user) {
+      setToStorage('user', user)
+    } else {
+      removeFromStorage('user')
+    }
   }
 
   const setTheme = (theme: 'light' | 'dark') => {
     setState(prev => ({ ...prev, theme }))
+    setToStorage('theme', theme)
   }
 
   const setLoading = (loading: boolean) => {
