@@ -4,6 +4,7 @@ import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './layouts/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
+import Register from './pages/Register'
 import NotFound from './pages/NotFound'
 import './App.css'
 
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/register" element={<Register />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
